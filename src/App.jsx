@@ -4,6 +4,7 @@ import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+
 function App() {
   const genAI = new GoogleGenerativeAI("AIzaSyBwc4UjMcLVWa07Qu0GF_q_cHH6YMrGAgU");
   const [messages, setMessages] = useState([
@@ -59,7 +60,14 @@ function App() {
               typingIndicator={isTyping ? <TypingIndicator content="Gemini is typing" /> : null}
             >
               {messages.map((message, i) => (
-                <Message key={i} model={message} />
+                <Message key={i} model={{
+                  message: message.message,
+                  sentTime: message.sentTime,
+                  senderName: message.sender,
+                  direction: message.sender === "user" ? "outgoing" : "incoming"
+                }}
+                className={`${message.sender === "user" ? "user-message" : "gemini-message"}`}
+               />
               ))}
             </MessageList>
             <MessageInput placeholder="Type message here" onSend={handleSend} />
