@@ -67,3 +67,40 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+/* Default styles */
+
+/* Mobile styles */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  .App {
+    padding: 20px;
+  }
+
+  .MainContainer {
+    max-width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .ChatContainer {
+    height: 100%;
+  }
+
+  .MessageList {
+    max-height: calc(100% - 60px);
+  }
+
+  .MessageInput {
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 40px);
+    margin: 0 20px;
+    border-radius: 20px;
+    background-color: #fff;
+  }
+
+  /* Adjust other styles as needed */
+}
